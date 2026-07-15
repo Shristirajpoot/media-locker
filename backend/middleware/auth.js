@@ -4,7 +4,12 @@ const JWT_SECRET = process.env.JWT_SECRET || 'fallback_super_secret_key_12345';
 
 const authenticateToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
+  let token = authHeader && authHeader.split(' ')[1];
+
+  // Fallback to query parameter (needed for Android `<Image>` support)
+  if (!token && req.query.token) {
+    token = req.query.token;
+  }
 
   if (!token) {
     return res.status(401).json({ error: 'Access token required' });

@@ -125,8 +125,7 @@ export default function MediaDetailsScreen({ route, navigation }) {
         <View style={styles.imageContainer}>
           <Image
             source={{
-              uri: imageUri,
-              headers: { Authorization: `Bearer ${token}` },
+              uri: `${imageUri}?token=${token}`,
             }}
             style={styles.image}
             resizeMode="contain"

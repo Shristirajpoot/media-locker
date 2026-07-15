@@ -60,8 +60,7 @@ export default function FeedScreen({ navigation }) {
       >
         <Image
           source={{
-            uri: `${BASE_URL}/api/media/${item.id}/preview`,
-            headers: { Authorization: `Bearer ${token}` },
+            uri: `${BASE_URL}/api/media/${item.id}/preview?token=${token}`,
           }}
           style={styles.cardImage}
           resizeMode="cover"
